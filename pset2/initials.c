@@ -13,71 +13,57 @@
 
 #include <stdio.h>
 #include <cs50.h>
+#include <ctype.h>
 
-//function declaration
-
-//void initial(char userName[]);
 
 int main(void)
 {
-	char s[20];
-	int c = 0;
-	int i = 0;
 
-	printf("What is your name?\n");
-	string userName = GetString();
+    int i = 0;
 
-	
-	if (userName[0] >= 'a' && userName[0] <= 'z') 
-		{
-				//alphabetize the first initial
-			s[0] = userName[0] - 32;
-			c++;
-			i++;
-
-		}
-
-	else if (userName[0] >= 'A' && userName[0] <= 'z') 
-		{
-			s[0] = userName[0];
-			c++;
-			i++;
-		}
-		
-
-	for (  ; userName[i] != '\0' && ((userName[i] >= 'a' && userName[i] <= 'z') || (userName[i] >= 'A' && userName[i] <= 'Z') || userName[i] == ' ') ; i++ )
-	{
-		//get string[0]
-		if (userName[i] == ' ')
-		{
-			i++;
-			if (userName[i] >= 'a' && userName[i] <= 'z') 
-			{
-				//alphabetize the first initial
-				s[c] = userName[i] - 32;
-				c++;
-				
-			}
-
-			else
-			{
-				s[c] = userName[i];
-				c++;
-			}
-				
-
-		}
-
-
-	}
-
-	
-	printf("%s", s);
-
-	printf("\n");
-	
-
-	return 0;
+    string userName = GetString();
+    
+    if (userName[0] >= 'a' && userName[0] <= 'z') 
+    {
+        printf("%c", toupper(userName[0]));
+        i++;
+        
+    }
+    
+    else if (userName[0] >= 'A' && userName[0] <= 'Z') 
+    {
+        printf("%c", userName[0]);
+        i++;
+        
+    }
+    
+    for (  ; userName[i] != '\0' && ((userName[i] >= 'a' && userName[i] <= 'z') 
+    || (userName[i] >= 'A' && userName[i] <= 'Z') || userName[i] == ' ') ; i++)
+    {
+        if (userName[i] == ' ')
+        {
+            printf("%c", toupper(userName[i + 1])); //this one line, eliminates the need for lines 47 to 59
+            /*
+            i++;
+            if (userName[i] >= 'a' && userName[i] <= 'z')
+            {
+                printf("%c", toupper(userName[i]));
+                
+            }
+            
+            else
+            {
+                printf("%c", userName[i]);
+                
+            }
+            */
+        }
+        
+    }
+    printf("\n");
+    
+    return 0;
+    
 }
 
 
