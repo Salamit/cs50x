@@ -10,56 +10,63 @@
  * 
  * 
  */
-/*
+
 #include <stdio.h>
 #include <cs50.h>
 #include <string.h>
+#include <ctype.h>
 
-int main()
+int main(int argc, string argv[])
 {
-	//accept a single command-line argument: non-negative integer
-	int n = GetInt();
 
-	//if no command-line argument and if more than one command-line argument
-	if ((n != NULL) || (n < 0 || n > 9 ))
-	{
-		//yell at the user
-		printf("You bad person! Your free reign has come to an end.\n");
+    int character = 0;
+    
 
-		// return a value of 1
-		return 1;
-	}
 
-	
-}
-*/
-
-/**
- * string-1.c
- *
- * David J. Malan
- * malan@harvard.edu
- *
- * Prints a string, one character per line.
- *
- * Demonstrates error checking.
- */
-
-#include <cs50.h>
-#include <stdio.h>
-#include <string.h>
-
-int main(void)
-{
-    // get line of text
-    string s = GetString();
-
-    // print string, one character per line
-    if (s != NULL)
+    if (argc == 2)
     {
-        for (int i = 0; i < strlen(s); i++)
+        int k = atoi(argv[1]);
+
+        string plainText = GetString();
+
+
+        for (int i = 0; plainText[i] != '\0'; i++)
         {
-            printf("%c\n", s[i]);
+            if (isalpha(plainText[i]))
+            {
+                if (isupper(plainText[i]))
+                {
+                    character = (((plainText[i] - 65 + k) % 26) + 65);
+                    printf("%c", character);
+
+                }
+
+                if (islower(plainText[i]))
+                {
+                    character = (((plainText[i] - 97 + k) % 26) + 97);
+                    printf("%c", character);
+                }
+
+            }
+                
+
+
+            else
+                printf("%c", plainText[i]);
+
+
         }
+        
     }
+
+    else
+    {
+        printf("You bad person! Your free reign has come to an end.\n");
+        
+        return 1;
+       
+    }
+
+    printf("\n");
+    return 0;
 }
