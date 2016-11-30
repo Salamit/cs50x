@@ -1,5 +1,5 @@
 /**
- * Pset 2 exercise 1 "Caesar"
+ * Pset 2 exercise 2 "Caesar"
  * caesar.c
  *
  * T.Salami
